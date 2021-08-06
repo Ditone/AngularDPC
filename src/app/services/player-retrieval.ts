@@ -36,8 +36,8 @@ export class PlayerRetrieval {
     private teamExists (t : Team) : boolean{
         for (let tl of this.teamList){
             if (t == tl.team){
-                console.log(t.name + ' already exists.')
-                return true
+                console.log(t.name + ' already exists.');
+                return true;
             }
         }
         return false
@@ -67,7 +67,7 @@ export class PlayerRetrieval {
     // Helper function called when a new team and associated list of players needs to be added
     // Need to know if it's the dire team or the radiant team
     private addTeam (t: Team, p : Array<string>) : void{
-        this.teamList.push(new TeamList(t, p))
+        this.teamList.push(new TeamList(t, p));
     }
 
     addUpdatePlayers (m : Match) : void{
@@ -76,14 +76,14 @@ export class PlayerRetrieval {
         // no? stop and add the team
 
         if (!this.teamExists(m.dire_team)){
-            this.addTeam(m.dire_team, this.getPlayersOfTeam(m, false))
+            this.addTeam(m.dire_team, this.getPlayersOfTeam(m, false));
         }
 
         //does the radiant team exist?
         // yes? move onto next step
         // no? stop and add the team
         if(!this.teamExists(m.radiant_team)){
-            this.addTeam(m.radiant_team, this.getPlayersOfTeam(m, true))
+            this.addTeam(m.radiant_team, this.getPlayersOfTeam(m, true));
         }
 
 
@@ -95,10 +95,10 @@ export class PlayerRetrieval {
 
     listExists () : boolean{
         if (this.completePlayerList.length > 0){ 
-            return true 
+            return true ;
         }
         else{
-            return false
+            return false;
         }
     }
 
@@ -123,7 +123,7 @@ export class PlayerRetrieval {
         for (let t of this.teamList){
             for (let pId of t.pNames){
                 if (id == pId){
-                    tempTeam = t.team
+                    tempTeam = t.team;
                 }
             }
         }

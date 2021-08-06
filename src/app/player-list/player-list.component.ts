@@ -16,9 +16,9 @@ export class PlayerListComponent implements OnInit{
 
   constructor(private matchService : MatchRetrieval, private playerService : PlayerRetrieval){}
 
-  matchDetails : Array <Match> = []
-  localPlayerList : Array <Player> = []
-  localTeamList : Array <TeamList> = []
+  matchDetails : Array <Match> = [];
+  localPlayerList : Array <Player> = [];
+  localTeamList : Array <TeamList> = [];
 
 
   ngOnInit() : void {
