@@ -1,0 +1,23 @@
+<div class='card'>
+    <div class = 'card-header'></div>
+    <div class = 'card-body'>
+        <div class = 'table-responsive'>
+            <table class = 'table' *ngIf = 'localPlayerList.length'>
+                <thead>
+                <tr>
+                    <th>Player Name</th>
+                    <th>Team Name</th>
+                    <th>Total Pings</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let p of localPlayerList'>
+                        <td>{{p.name}}</td>
+                        <td>{{localFindPlayersTeamName(p.name)}}</td>
+                        <td>{{p.pings}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

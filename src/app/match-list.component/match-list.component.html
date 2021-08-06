@@ -1,0 +1,36 @@
+<div class='card'>
+    <div class = 'card-header'>
+    </div>
+    <div class = 'card-body'>
+        <div class = 'table-responsive'>
+            <table class = 'table' *ngIf = 'matchDetails.length'>
+                <thead>
+                <tr>
+                    <th>Match ID</th>
+                    <th>Radiant Team</th>
+                    <th *ngFor = 'let p of [1,2,3,4,5]'>
+                        Player {{p}}
+                    </th>
+                    <th>Dire Team</th>
+                    <th *ngFor = 'let p of [6,7,8,9,10]'>
+                        Player {{p}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let m of matchDetails'>
+                        <td>{{m.match_id}}</td>
+                        <td>{{m.radiant_team.name}}</td>
+                        <td *ngFor = 'let p of [0,1,2,3,4]'>
+                            {{m.players[p].name}} , {{m.players[p].pings}}
+                        </td>
+                        <td>{{m.dire_team.name}}</td>
+                        <td *ngFor = 'let p of [5,6,7,8,9]'>
+                            {{m.players[p].name}} , {{m.players[p].pings}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
