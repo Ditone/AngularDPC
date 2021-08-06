@@ -1,4 +1,4 @@
 export interface HeroCount{
-    heroId : number
-    count : number
+    heroId : number;
+    count : number;
 }
