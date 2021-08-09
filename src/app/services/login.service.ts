@@ -6,7 +6,7 @@ import { User } from "../models/user";
     providedIn: 'root'
 })
 export class LoginService{
-    currentUser : User | undefined;
+    currentUser : User;
 
     get isLoggedIn() : boolean {
         return !!this.currentUser;
