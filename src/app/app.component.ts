@@ -13,7 +13,7 @@ export class AppComponent{
   constructor (private loginService : LoginService, private router : Router) {}
 
   get isLoggedIn() : boolean{
-    return this.loginService.isLoggedIn;
+    return !!this.loginService;
   }
 
   get userName(): string{
