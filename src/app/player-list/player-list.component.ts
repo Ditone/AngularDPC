@@ -43,6 +43,9 @@ export class PlayerListComponent implements OnInit{
     }
     this.localPlayerList = this.playerService.getPlayers();
     this.localTeamList = this.playerService.getTeamList();
+
+    this.localTeamList = [];
+    this.localTeamList = [];
   }
 
   localFindPlayersTeamName(name : string){

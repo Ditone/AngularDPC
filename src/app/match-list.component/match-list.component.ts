@@ -23,6 +23,7 @@ import { delay } from 'rxjs/operators';
   ngOnInit() : void { 
     // clear any existing values (test)
     this.playerService.clearPlayers ();
+    this.matchDetails = [];
 
     // test single match -- id : 5861478139 - Quincy Crew vs EG DPC Season 1 
     // generate matchID array
@@ -46,9 +47,10 @@ import { delay } from 'rxjs/operators';
         
         // log success
         console.log('Successfully added match ' + match.match_id + '.');
+        
     }),
     (error : HttpErrorResponse) => {
       console.error(error.error);
     } 
   }
-}
+} 

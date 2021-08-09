@@ -89,6 +89,10 @@ export class PlayerRetrieval {
 
         //add all players from the match to the full player list
         for (let p of m.players){
+            if (p.pings == undefined){
+                console.log("Detected " + p.name + " has no pings.")
+                p.pings = 0;
+            }
             this.addUpdatePlayer(p);
         }
     }
