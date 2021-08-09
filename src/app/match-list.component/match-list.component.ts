@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MatchRetrieval } from '../services/match-retrieval';
+import { MatchRetrieval } from '../services/match-retrieval.service';
 //import { PlayerRetrieval } from './services/player-retrieval';
 import { Match } from '../models/match';
 import { Player } from '../models/player';
-import { PlayerRetrieval } from '../services/player-retrieval';
+import { PlayerRetrieval } from '../services/player-retrieval.service';
 import { delay } from 'rxjs/operators';
 
 @Component({
