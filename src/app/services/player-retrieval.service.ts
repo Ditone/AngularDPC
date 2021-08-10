@@ -5,7 +5,7 @@ import { Match } from "src/app/models/match";
 import { Player } from "../models/player";
 import { Team } from "../models/team";
 import { TeamList } from "../models/team-list";
-import { MatchListComponent } from "../match-list.component/match-list.component";
+import { MatchListComponent } from "../match-list/match-list.component";
 
 @Injectable({
     providedIn: 'root'

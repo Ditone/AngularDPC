@@ -25,6 +25,8 @@ import { delay } from 'rxjs/operators';
     this.playerService.clearPlayers ();
     this.matchDetails = [];
 
+    console.log('Length of match details ' + this.matchDetails.length)
+
     // test single match -- id : 5861478139 - Quincy Crew vs EG DPC Season 1 
     // generate matchID array
     this.matchService.populateMatchIds ();
