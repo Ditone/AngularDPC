@@ -1,9 +1,8 @@
 <div class='card'>
-    <div class = 'card-header'>
-    </div>
+    <div class = 'card-header'></div>
     <div class = 'card-body'>
         <div class = 'table-responsive'>
-            <table class = 'table' *ngIf = 'matchDetails.length'>
+            <table class = 'table' *ngIf = 'matchDetails.length' >
                 <thead>
                 <tr>
                     <th>Match ID</th>
@@ -19,14 +18,15 @@
                 </thead>
                 <tbody>
                     <tr *ngFor='let m of matchDetails'>
-                        <td>{{m.match_id}}</td>
-                        <td>{{m.radiant_team.name}}</td>
+                        
+                        <td><a [routerLink] = "['/matches', m.match_id]">{{m.match_id}}</a></td>
+                        <td><a [routerLink] = "['/teams', m.radiant_team.team_id]">{{m.radiant_team.name}}</a></td>
                         <td *ngFor = 'let p of [0,1,2,3,4]'>
-                            {{m.players[p].name}} , {{m.players[p].pings}}
+                            <tr><a [routerLink] = "['/players', m.players[p].account_id]">{{m.players[p].name}}</a> , {{m.players[p].pings}} </tr>
                         </td>
-                        <td>{{m.dire_team.name}}</td>
+                        <td> <a [routerLink] = "['/teams', m.dire_team.team_id]">{{m.dire_team.name}}</a></td>
                         <td *ngFor = 'let p of [5,6,7,8,9]'>
-                            {{m.players[p].name}} , {{m.players[p].pings}}
+                            <a [routerLink] = "['/players', m.players[p].account_id]">{{m.players[p].name}}</a> , {{m.players[p].pings}}
                         </td>
                     </tr>
                 </tbody>

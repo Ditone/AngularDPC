@@ -21,38 +21,6 @@ import { delay } from 'rxjs/operators';
   constructor(private matchService : MatchRetrieval, private playerService : PlayerRetrieval) {}
   
   ngOnInit() : void { 
-    // clear any existing values (test)
-    this.playerService.clearPlayers ();
-    this.matchDetails = [];
-
-    console.log('Length of match details ' + this.matchDetails.length)
-
-    // test single match -- id : 5861478139 - Quincy Crew vs EG DPC Season 1 
-    // generate matchID array
-    this.matchService.populateMatchIds ();
-
-    // retrieve matchs for each ID 
-    for (let mId of this.matchService.getIds()){
-      console.log('fetching : ' + mId + '.');
-      this.retriveMatchFromId(mId);
-    }
-  }
-
-  retriveMatchFromId (matchId : number): void {
-    // retrieve match
-    this.matchService.retrieveMatch(matchId).subscribe((match : Match ) => {
-        // update the player list + team list
-        this.playerService.addUpdatePlayers(match);
-
-        // add match to matchDetails
-        this.matchDetails.push(match);
-        
-        // log success
-        console.log('Successfully added match ' + match.match_id + '.');
-        
-    }),
-    (error : HttpErrorResponse) => {
-      console.error(error.error);
-    } 
+    this.matchDetails = this.matchService.getMatchList();
   }
 } 

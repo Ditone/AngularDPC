@@ -12,8 +12,8 @@
                 </thead>
                 <tbody>
                     <tr *ngFor='let p of localPlayerList'>
-                        <td>{{p.name}}</td>
-                        <td>{{localFindPlayersTeamName(p.name)}}</td>
+                        <td><a [routerLink] = "['/players', p.account_id]">{{p.name}}</a></td>
+                        <td><a [routerLink] = "['/teams', localFindPlayersTeamName(p.name)]"> {{localFindPlayersTeamName(p.name)}}</a></td>
                         <td>{{p.pings}}</td>
                     </tr>
                 </tbody>

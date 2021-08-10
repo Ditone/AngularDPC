@@ -30,6 +30,7 @@ export class MatchRetrieval {
 
     // don't want anyone touching the ID list unless necessary
     private onlyIds : Array<number> = [];
+    private matchList : Array<Match> = [];
 
     retrieveMatch ( matchId : number ) : Observable<Match>{
         //return this.http.get<FullMatch>('https://api.opendota.com/api/matches/' + matchId + '/?api_key=3ca47c01-644c-48fc-b81c-ca2032313edc');
@@ -47,7 +48,16 @@ export class MatchRetrieval {
         console.log('Completed populating matches');
     }
 
+    addMatch(m : Match) : void{
+        console.log ('Received ' + m.match_id);
+        this.matchList.push(m);
+    }
+
     getIds() : Array<number> {
         return this.onlyIds;
+    }
+
+    getMatchList() : Array<Match> {
+        return [...this.matchList];
     }
 }

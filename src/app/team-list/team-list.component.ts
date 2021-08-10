@@ -8,26 +8,27 @@ import { MatchRetrieval } from "../services/match-retrieval.service";
 import { PlayerRetrieval } from "../services/player-retrieval.service";
 import { TeamRetrieval } from "../services/team-retrieval.service";
 
+
 @Component({
-  selector : 'pm-plist',
-  templateUrl : './player-list.component.html',
-  styleUrls: ['./player-list.component.scss']
+  selector: 'app-team-list',
+  templateUrl: './team-list.component.html',
+  styleUrls: ['./team-list.component.scss']
 })
-export class PlayerListComponent implements OnInit{
+export class TeamListComponent implements OnInit {
 
   constructor(private matchService : MatchRetrieval, private playerService : PlayerRetrieval, private teamService : TeamRetrieval){}
 
-  localMatchDetails : Array <Match> = [];
   localPlayerList : Array <Player> = [];
   localTeamList : Array <TeamList> = [];
 
+  /*component wants to display the list of teams, sharing this information:
+    Team Logo, Team Name, List of player names (broken into different rows) showing Tag.Name
+    Team Name and Team Logo clickable to go to team details
+    Player names clickable to go to player details
+  */
   ngOnInit() : void {
     this.localPlayerList = this.playerService.getPlayers();
     this.localTeamList = this.teamService.getTeamList();
-    this.localMatchDetails = this.matchService.getMatchList();
   }
 
-  localFindPlayersTeamName(name : string){
-    return this.teamService.findAPlayersTeam(name).name;
-  }
 }
