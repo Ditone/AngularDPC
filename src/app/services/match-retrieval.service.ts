@@ -39,15 +39,13 @@ export class MatchRetrieval {
     // breaks apart the the na_match_ids.json file into just the match_ids
     // hard coding location, but is supposed to emulate working with a JSON
     populateMatchIds () : void {
+        this.onlyIds = [] 
         for (let index in testIds){
             this.onlyIds.push(testIds[index].match_id);
             //this.onlyIds.push(matchIds[index].match_id);
         }
         console.log('Completed populating matches');
     }
-
-
-    
 
     getIds() : Array<number> {
         return this.onlyIds;
