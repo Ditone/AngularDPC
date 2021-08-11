@@ -1,1 +1,27 @@
-<p>team-list works!</p>
+<div class = 'card'>
+    <div class = 'card-header'></div>
+    <div class = 'card-body'>
+        <div class = 'table-responsive'>
+            <table class = 'table' *ngIf = 'localTeamList.length'>
+                <thead>
+                    <tr>
+                        <th>Team Logo</th>
+                        <th>Team Name</th>
+                        <th *ngFor = 'let p of [1,2,3,4,5]'>
+                            Player {{p}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = 'let t of localTeamList'>
+                        <td> <a [routerLink] = "['/teams', t.team.team_id]"><img class = 'fit-picture' src = {{t.team.logo_url}} alt="'Team logo for ' + {{t.team.name}} + '. '"></a></td>
+                        <td> <a [routerLink] = "['/teams', t.team.team_id]">{{t.team.name}}</a></td>
+                        <th *ngFor = 'let p of [0,1,2,3,4]'>
+                            {{t.team.tag}}.<a [routerLink] = "['/players', t.players[p].account_id]">{{t.players[p].name}}</a>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

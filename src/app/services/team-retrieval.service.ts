@@ -17,8 +17,7 @@ export class TeamRetrieval {
     // Function to help identify if a team already exists
     private teamExists (t : Team) : boolean{
         for (let tl of this.teamList){
-            if (t == tl.team){
-                console.log(t.name + ' already exists.');
+            if (t.team_id == tl.team.team_id){
                 return true;
             }
         }
@@ -37,9 +36,8 @@ export class TeamRetrieval {
         // set that teamlist obj's playerlist to the new player list
 
         for (let tl of this.teamList){
-            if (tl.team == t){
+            if (tl.team.team_id == t.team_id){
                 tl.players = this.playerService.addPlayersOneTeam(tl.players)
-                console.log ("Updated players of team: " + t.name)
                 return
             }
         }
@@ -74,17 +72,31 @@ export class TeamRetrieval {
     addUpdateTeam (m : Match) : void{
         if (!this.teamExists(m.dire_team)){
             this.addTeam(m.dire_team, this.getPlayersOfTeam(m, false));
+            return;
         }
 
         //does the radiant team exist?
         // yes? move onto next step, no? stop and add the team
         if(!this.teamExists(m.radiant_team)){
             this.addTeam(m.radiant_team, this.getPlayersOfTeam(m, true));
+            return;
         }
 
         if (this.teamExists(m.dire_team)){
             this.updateTeam (m.dire_team, this.getPlayersOfTeam(m, false));
+            return;
         }
+
+        if (this.teamExists(m.radiant_team)){
+            this.updateTeam (m.radiant_team, this.getPlayersOfTeam(m, true));
+            return;
+        }
+
+        else{
+            console.log('Something went wrong in addUpdateTeam for teams '
+            + m.dire_team.name + ' and ' + m.radiant_team.name + '.')
+        }
+
     }
 
     // return a copy of the teamlist
