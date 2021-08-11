@@ -1,10 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, JsonpClientBackend } from '@angular/common/http';
-import { Observable } from "rxjs";
 import { Match } from "src/app/models/match";
-
-import matchIds from 'src/app/local-data/na_match_ids.json';
-import testIds from 'src/app/local-data/test_ids.json';
 import { Team } from "../models/team";
 import { TeamList } from "../models/team-list";
 import { Player } from "../models/player";
@@ -37,7 +32,19 @@ export class TeamRetrieval {
     }
 
     private updateTeam(t: Team, ps : Array<Player>) : void{
+        // find the teamlist obj containing team
+        // take that player list, run addPlayersOneTeam (thatPlayerList)
+        // set that teamlist obj's playerlist to the new player list
 
+        for (let tl of this.teamList){
+            if (tl.team == t){
+                tl.players = this.playerService.addPlayersOneTeam(tl.players)
+                console.log ("Updated players of team: " + t.name)
+                return
+            }
+        }
+
+        console.log ("Something went terribly wrong running private updateTeam on "  + t.name)
     }
 
     // Helper function called in the add/update team

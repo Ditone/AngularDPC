@@ -1,19 +1,13 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, JsonpClientBackend } from '@angular/common/http';
-import { Observable } from "rxjs";
+import { HttpClient } from '@angular/common/http';
 import { Match } from "src/app/models/match";
 import { Player } from "../models/player";
-import { Team } from "../models/team";
-import { TeamList } from "../models/team-list";
-import { MatchListComponent } from "../match-list/match-list.component";
-import { TeamRetrieval } from "./team-retrieval.service";
-import { newArray } from "@angular/compiler/src/util";
 
 @Injectable({
     providedIn: 'root'
 })
 export class PlayerRetrieval {
-    constructor (private http : HttpClient, private teamService : TeamRetrieval) {}
+    constructor (private http : HttpClient) {}
 
     private completePlayerList : Array<Player> = [];
 
@@ -44,13 +38,12 @@ export class PlayerRetrieval {
         }
     }
 
-
     addPlayersOneTeam (newP : Array<Player>) : Array<Player> {
         let newPlayers : Array<Player> = [];
 
         for (let np in newP){
             for (let p in this.completePlayerList){
-                if (newP[np] == this.completePlayerList[p]){
+                if (newP[np].account_id == this.completePlayerList[p].account_id){
                     newP[np].pings += this.completePlayerList[p].pings;
                     newPlayers.push(newP[np]);
                 }
@@ -58,7 +51,7 @@ export class PlayerRetrieval {
         }
         
         if (newPlayers.length==0){
-            console.log('Something went terribly wrong at addPlayersOneTeam');
+            console.log('Something went terribly wrong at addPlayersOneTeam. ' + newP[0].name);
         }
 
         return newPlayers;
