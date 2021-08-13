@@ -48,7 +48,7 @@ export class PlayerDetailsComponent implements OnInit{
 
   ngOnInit():void{
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    if (+this.route.snapshot.paramMap.get('id')!){
+    if (!+this.route.snapshot.paramMap.get('id')!){
       console.error('ID is null');
     }
     else{
