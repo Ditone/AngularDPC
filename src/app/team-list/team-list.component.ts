@@ -15,15 +15,15 @@ export class TeamListComponent implements OnInit {
 
   constructor(private playerService : PlayerRetrieval, private teamService : TeamRetrieval){}
 
-  localPlayerList : Array <Player> = [];
-  localTeamList : Array <TeamList> = [];
+  localPlayerList: Array <Player> = [];
+  localTeamList: Array <TeamList> = [];
 
   /*component wants to display the list of teams, sharing this information:
     Team Logo, Team Name, List of player names (broken into different rows) showing Tag.Name
     Team Name and Team Logo clickable to go to team details
     Player names clickable to go to player details
   */
-  ngOnInit() : void {
+  ngOnInit(): void {
     this.localPlayerList = this.playerService.getPlayers();
     this.localTeamList = this.teamService.getTeamList();
   }

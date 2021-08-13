@@ -81,7 +81,7 @@ export class TeamRetrieval {
     // Helper function called in the add/update team
     // Gets all players on a team so they know which players to update
     private getPlayersOfTeam (m : Match, t : Team) : Array<Player>{
-        var tempPlayerList : Array<Player> = [];
+        let tempPlayerList : Array<Player> = [];
 
         if (t.team_id == m.radiant_team.team_id){
             for (let p of m.players){

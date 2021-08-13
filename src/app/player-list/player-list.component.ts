@@ -27,7 +27,7 @@ export class PlayerListComponent implements OnInit{
     this.localMatchDetails = this.matchService.getMatchList();
   }
 
-  localFindPlayersTeamName(name : string){
+  localFindPlayersTeamName(name : string) : string{
     return this.teamService.findAPlayersTeam(name).name;
   }
 }

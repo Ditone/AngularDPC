@@ -11,16 +11,12 @@ import { TeamRetrieval } from '../services/team-retrieval.service';
 })
 export class TeamDetailsComponent implements OnInit {
 
+  displayedTeam! : Team;
+  displayedPlayers : Array<Player> = [];
+
+
   constructor(private teamService : TeamRetrieval, private route : ActivatedRoute) {}
-   
-   displayedTeam! : Team;
-   displayedPlayers : Array<Player> = [];
-
-   getTeam (id : number) : void{
-     this.displayedTeam = this.teamService.getTeam(id);
-     this.displayedPlayers = this.teamService.getPlayers(this.displayedTeam.name);
-   }
-
+  
   ngOnInit(): void {
     if (+this.route.snapshot.paramMap.get('id')! == null){
       console.error('ID is null');
@@ -29,4 +25,9 @@ export class TeamDetailsComponent implements OnInit {
       this.getTeam(+this.route.snapshot.paramMap.get('id')!)
     }
   }
+
+   getTeam (id : number) : void{
+     this.displayedTeam = this.teamService.getTeam(id);
+     this.displayedPlayers = this.teamService.getPlayers(this.displayedTeam.name);
+   }
 }

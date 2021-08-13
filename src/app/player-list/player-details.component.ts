@@ -24,7 +24,6 @@ import { Team } from "../models/team";
         //set account details to the retrieved account information
         this.accountDetails = accInfo;
         this.getPlayersTeam(accInfo.profile.account_id);
- 
         this.fixPlayerDetails(this.accountDetails);
         
       }),
@@ -34,15 +33,13 @@ import { Team } from "../models/team";
     }
 
     fixPlayerDetails (accInfo : AccountInfo){
-      if (accInfo.competitive_rank == null || accInfo.competitive_rank == undefined){
+      if (accInfo.competitive_rank){
         accInfo.competitive_rank = 'Unranked';
       }
-      if (accInfo.leaderboard_rank == null || accInfo.competitive_rank){
+      if (accInfo.leaderboard_rank){
         accInfo.leaderboard_rank = 0;
       }
-      if (accInfo.profile.loccountrycode == null || accInfo.profile.loccountrycode == undefined){
-        accInfo.profile.loccountrycode = 'Not listed.'
-      }
+      accInfo.profile.loccountrycode = accInfo.profile.loccountrycode || 'Not listed.';
     }
 
     getPlayersTeam (accId : number) : void{

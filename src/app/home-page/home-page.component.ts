@@ -32,7 +32,6 @@ export class HomePageComponent{
         console.log('fetching : ' + mId + '.');
         this.retriveMatchFromId(mId);
       }
-      delay(10000);
       this.statusMessage = 'Data has finished loading. Thank you for waiting'
     }
     else { this.statusMessage = 'Your data has already been loaded. Thank you.'}    
