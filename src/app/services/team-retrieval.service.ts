@@ -30,6 +30,39 @@ export class TeamRetrieval {
         this.teamList.push(new TeamList(t, p));
     }
 
+    // returns the team based on the team's ID
+    getTeam(tId : number) : Team{
+        let tempTeam! : Team;
+
+        for (let tm of this.teamList){
+            if (tm.team.team_id == tId){
+                return tm.team;
+            }
+        }
+        console.error('Get Team: Yikes');
+        return tempTeam;
+    }
+
+    // returns the players of a particular team based on the team's Name
+    getPlayers (tName : string ) : Array<Player> {
+        let tempPlayerList! : Array<Player>;
+
+        for (let t of this.teamList){
+            for (let p of t.players){
+            }
+        }
+        
+        for (let p of this.teamList){
+            if (p.team.name == tName){
+                return p.players;
+            }
+        }
+
+        console.error('Get Players Yikes');
+        return tempPlayerList;
+    }
+
+    // helper function, uses player service to find team then update player's values
     private updateTeam(t: Team, ps : Array<Player>) : void{
         // find the teamlist obj containing team
         // take that player list, run addPlayersOneTeam (thatPlayerList)
@@ -47,21 +80,27 @@ export class TeamRetrieval {
 
     // Helper function called in the add/update team
     // Gets all players on a team so they know which players to update
-    private getPlayersOfTeam (m : Match, isRad : boolean) : Array<Player>{
+    private getPlayersOfTeam (m : Match, t : Team) : Array<Player>{
         var tempPlayerList : Array<Player> = [];
-        
-        if (isRad){
+
+        if (t.team_id == m.radiant_team.team_id){
             for (let p of m.players){
                 if (p.isRadiant){
-                    tempPlayerList.push(p);
+                    tempPlayerList.push(p)
                 }
             }
         }
 
-        else if (!isRad){
+        else if (t.team_id == m.dire_team.team_id){
             for (let p of m.players){
-                tempPlayerList.push(p);
+                if (!p.isRadiant){
+                    tempPlayerList.push(p)
+                }
             }
+        }
+        
+        else{
+            console.error ('getPlayersOfTeam yikes: ' + m.match_id);
         }
 
         return tempPlayerList;
@@ -69,32 +108,24 @@ export class TeamRetrieval {
 
     //does the dire team exist?
     // yes? move on to radiant team, no? stop and add the team
-    addUpdateTeam (m : Match) : void{
-        if (!this.teamExists(m.dire_team)){
-            this.addTeam(m.dire_team, this.getPlayersOfTeam(m, false));
+    addUpdateTeam (m : Match, t : Team) : void{
+        if (!this.teamExists(t)){
+            this.addTeam(t, this.getPlayersOfTeam(m, t));
             return;
         }
 
         //does the radiant team exist?
         // yes? move onto next step, no? stop and add the team
-        if(!this.teamExists(m.radiant_team)){
-            this.addTeam(m.radiant_team, this.getPlayersOfTeam(m, true));
+        if(this.teamExists(t)){
+            this.updateTeam(t, this.getPlayersOfTeam(m, t));
             return;
         }
 
-        if (this.teamExists(m.dire_team)){
-            this.updateTeam (m.dire_team, this.getPlayersOfTeam(m, false));
-            return;
-        }
-
-        if (this.teamExists(m.radiant_team)){
-            this.updateTeam (m.radiant_team, this.getPlayersOfTeam(m, true));
-            return;
-        }
+        
 
         else{
             console.log('Something went wrong in addUpdateTeam for teams '
-            + m.dire_team.name + ' and ' + m.radiant_team.name + '.')
+            + t.name)
         }
 
     }

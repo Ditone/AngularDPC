@@ -19,8 +19,7 @@ export class PlayerRetrieval {
     private addUpdatePlayer (p : Player) : void {
         for (let pIndex of this.completePlayerList){
             if (pIndex.account_id == p.account_id){
-                console.log (pIndex.name + " already exists. Existing pings: " + pIndex.pings + ". Adding pings: " + p.pings + ".");
-                pIndex.pings += p.pings;
+               pIndex.pings += p.pings;
                 return;
             }
         }
@@ -31,7 +30,6 @@ export class PlayerRetrieval {
         //add all players from the match to the full player list
         for (let p of m.players){
             if (p.pings == undefined){
-                console.log("Detected " + p.name + " has no pings.")
                 p.pings = 0;
             }
             this.addUpdatePlayer(p);

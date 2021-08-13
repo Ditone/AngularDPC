@@ -10,4 +10,11 @@ export class AppComponent{
   title = 'DotACollector';
 
   constructor (private router : Router) {}
+
+  ngOnInit() {
+    this.router.navigate([''])
+  }
+  ngOnRefresh(){
+    this.router.navigate([''])
+  }
 }

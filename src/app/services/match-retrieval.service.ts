@@ -21,6 +21,7 @@ import { Match } from "src/app/models/match";
 */
 import matchIds from 'src/app/local-data/na_match_ids.json';
 import testIds from 'src/app/local-data/test_ids.json';
+import { delay } from "rxjs/operators";
 
 @Injectable({
     providedIn: 'root'
@@ -34,7 +35,7 @@ export class MatchRetrieval {
 
     retrieveMatch ( matchId : number ) : Observable<Match>{
         //return this.http.get<FullMatch>('https://api.opendota.com/api/matches/' + matchId + '/?api_key=3ca47c01-644c-48fc-b81c-ca2032313edc');
-        return this.http.get<Match>('https://api.opendota.com/api/matches/' + matchId + '/?api_key=3ca47c01-644c-48fc-b81c-ca2032313edc');
+        return this.http.get<Match>('https://api.opendota.com/api/matches/' + matchId + '/?api_key=3ca47c01-644c-48fc-b81c-ca2032313edc').pipe(delay(1000));
     }
 
     // breaks apart the the na_match_ids.json file into just the match_ids

@@ -1,1 +1,38 @@
-<p>team-details works!</p>
+<h1> {{displayedTeam.name}} : team.Region(later) : DPC Ranking (Later)</h1>
+<h1><img src = {{displayedTeam.logo_url}}> </h1>
+
+<div></div>
+<h2> Team Stats: TODO </h2>
+<div class = 'table-responsive'>
+    <table class = 'table' *ngIf = 'displayedPlayers.length'>
+        <thead>
+            <tr>
+                <th> Match ID </th>
+                <th> Played Against </th>
+                <th> Match Time </th>
+                <th> Outcome </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div></div>
+<h2> Players: </h2>
+<div class = 'table-responsive'>
+    <table class = 'table' *ngIf = 'displayedPlayers.length'>
+        <thead>
+            <tr>
+                <th> Player Name </th>
+                <th> Player ID </th>
+                <th> Player Pings </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = 'let p of displayedPlayers'>
+                <td> <a [routerLink] = "['/players', p.account_id]"> {{p.name}} </a></td>
+                <td> <a [routerLink] = "['/players', p.account_id]"> {{p.account_id}} </a></td>
+                <td> {{p.pings}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

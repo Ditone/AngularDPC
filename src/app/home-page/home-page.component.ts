@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { delay } from 'rxjs/operators';
 import { Match } from '../models/match';
 import { Player } from '../models/player';
 import { Team } from '../models/team';
@@ -31,6 +32,7 @@ export class HomePageComponent{
         console.log('fetching : ' + mId + '.');
         this.retriveMatchFromId(mId);
       }
+      delay(10000);
       this.statusMessage = 'Data has finished loading. Thank you for waiting'
     }
     else { this.statusMessage = 'Your data has already been loaded. Thank you.'}    
@@ -42,7 +44,8 @@ export class HomePageComponent{
       // update the player list
       this.playerService.addUpdatePlayers(match);
       // update the team list
-      this.teamService.addUpdateTeam(match);
+      this.teamService.addUpdateTeam(match, match.radiant_team);
+      this.teamService.addUpdateTeam(match, match.dire_team);
       // add match to matchDetails
       this.matchService.addMatch(match);
       // log success

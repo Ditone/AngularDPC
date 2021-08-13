@@ -1,1 +1,37 @@
-<h1>This shit works</h1>
+<h1>{{playerTeam.tag}}.{{accountDetails.profile.name}}<img src = {{accountDetails.profile.avatarfull}} >
+</h1>
+
+<h2>
+    <b> General Stats </b>
+</h2>
+<div>
+    <b>Competitive Rank</b> : {{accountDetails.competitive_rank}}
+</div>
+<div>
+    <b>Leaderboard Rank</b> : {{accountDetails.leaderboard_rank}}
+</div>
+<div>
+    <b>MMR Estimate</b> : {{accountDetails.mmr_estimate.estimate}}
+</div>
+<div>
+    <b>Account ID</b> : {{accountDetails.profile.account_id}}
+</div>
+<div>
+    <b>Country</b> : {{accountDetails.profile.loccountrycode}}
+</div>
+
+<h2>
+    <b>Matches Played </b>: 
+</h2>
+<div class = 'table-responsive'>
+    <table class = 'table' *ngIf = 'accountDetails.profile.account_id'>
+        <thead>
+            <tr>
+                <th> Match ID </th>
+                <th> Played Against </th>
+                <th> Match Time </th>
+                <th> Outcome </th>
+            </tr>
+        </thead>
+    </table>
+</div>
