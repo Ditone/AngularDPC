@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, JsonpClientBackend } from '@angular/common/http';
-import { Observable } from "rxjs";
-import { Match } from "src/app/models/match";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Match } from 'src/app/models/match';
 
 //json is a result of this query on the OpenDotA Match Browser:
-    /* SELECT matches.match_id 
+/* SELECT matches.match_id 
     FROM matches
     JOIN match_patch using(match_id)
     JOIN leagues using(leagueid)
@@ -19,46 +19,44 @@ import { Match } from "src/app/models/match";
     GROUP BY matches.match_id
     HAVING count(distinct matches.match_id) >= 1
 */
-import matchIds from 'src/app/local-data/na_match_ids.json';
+//import matchIds from 'src/app/local-data/na_match_ids.json';
 import testIds from 'src/app/local-data/test_ids.json';
-import { delay } from "rxjs/operators";
+import { delay } from 'rxjs/operators';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class MatchRetrieval {
-    constructor (private http : HttpClient) {}
+  constructor (private http : HttpClient) {}
 
     // don't want anyone touching the ID list unless necessary
     private onlyIds : Array<number> = [];
     private matchList : Array<Match> = [];
 
     retrieveMatch ( matchId : number ) : Observable<Match>{
-        //return this.http.get<FullMatch>('https://api.opendota.com/api/matches/' + matchId + '/?api_key=3ca47c01-644c-48fc-b81c-ca2032313edc');
-        return this.http.get<Match>('https://api.opendota.com/api/matches/' + matchId + '/?api_key=3ca47c01-644c-48fc-b81c-ca2032313edc').pipe(delay(1000));
+    //return this.http.get<FullMatch>('https://api.opendota.com/api/matches/' + matchId + '/?api_key=3ca47c01-644c-48fc-b81c-ca2032313edc');
+      return this.http.get<Match>('https://api.opendota.com/api/matches/' + matchId + '/?api_key=3ca47c01-644c-48fc-b81c-ca2032313edc').pipe(delay(1000));
     }
 
     // breaks apart the the na_match_ids.json file into just the match_ids
     // hard coding location, but is supposed to emulate working with a JSON
     populateMatchIds () : void {
-        this.onlyIds = [] 
-        for (let index in testIds){
-            this.onlyIds.push(testIds[index].match_id);
-            //this.onlyIds.push(matchIds[index].match_id);
-        }
-        console.log('Completed populating matches');
+      this.onlyIds = [];
+      for (const index in testIds){
+        this.onlyIds.push(testIds[index].match_id);
+        //this.onlyIds.push(matchIds[index].match_id);
+      }
     }
 
     addMatch(m : Match) : void{
-        console.log ('Received ' + m.match_id);
-        this.matchList.push(m);
+      this.matchList.push(m);
     }
 
     getIds() : Array<number> {
-        return this.onlyIds;
+      return this.onlyIds;
     }
 
     getMatchList() : Array<Match> {
-        return [...this.matchList];
+      return [...this.matchList];
     }
 }

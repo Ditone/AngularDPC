@@ -18,16 +18,18 @@ export class TeamDetailsComponent implements OnInit {
   constructor(private teamService : TeamRetrieval, private route : ActivatedRoute) {}
   
   ngOnInit(): void {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     if (+this.route.snapshot.paramMap.get('id')! == null){
       console.error('ID is null');
     }
     else{
-      this.getTeam(+this.route.snapshot.paramMap.get('id')!)
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.getTeam(+this.route.snapshot.paramMap.get('id')!);
     }
   }
 
-   getTeam (id : number) : void{
-     this.displayedTeam = this.teamService.getTeam(id);
-     this.displayedPlayers = this.teamService.getPlayers(this.displayedTeam.name);
-   }
+  getTeam (id : number) : void{
+    this.displayedTeam = this.teamService.getTeam(id);
+    this.displayedPlayers = this.teamService.getPlayers(this.displayedTeam.name);
+  }
 }

@@ -1,5 +1,5 @@
-import { Player } from "./player";
-import { Team } from "./team";
+import { Player } from './player';
+import { Team } from './team';
 
 export interface Match{
     match_id : number;

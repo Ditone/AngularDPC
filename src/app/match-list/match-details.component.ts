@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-match-details',
-  templateUrl: './match-details.component.html',
-  styleUrls: ['./match-details.component.scss']
-})
-export class MatchDetailsComponent implements OnInit {
+// @Component({
+//   selector: 'app-match-details',
+//   templateUrl: './match-details.component.html',
+//   styleUrls: ['./match-details.component.scss']
+// })
+// export class MatchDetailsComponent implements OnInit {
 
-  constructor() { }
+//   constructor() {}
 
-  ngOnInit(): void {
-    
-  }
+//   ngOnInit(): void {
+//   }
 
-}
+// }

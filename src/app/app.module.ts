@@ -1,13 +1,13 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './routes/app-routing-module';
 import { AppComponent } from './app.component';
 import { MatTableModule } from '@angular/material/table';
 
 import { PageNotFoundComponent } from './page-not-found.component';
-import { MessageModule } from './messages/message.module';
+//import { MessageModule } from './messages - unusued/message.module';
 import { PlayerModule } from './player-list/player.module';
 import { MatchModule } from './match-list/match.module';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -27,7 +27,7 @@ import { TeamModule } from './team-list/team-details.module';
     MatchModule,
     PlayerModule,
     TeamModule,
-    MessageModule,
+    //MessageModule,
     AppRoutingModule
   ],
   providers: [],

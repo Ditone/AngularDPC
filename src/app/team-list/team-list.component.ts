@@ -1,9 +1,9 @@
-import { OnInit } from "@angular/core";
-import { Component } from "@angular/core";
-import { Player } from "../models/player";
-import { TeamList } from "../models/team-list";
-import { PlayerRetrieval } from "../services/player-retrieval.service";
-import { TeamRetrieval } from "../services/team-retrieval.service";
+import { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Player } from '../models/player';
+import { TeamList } from '../models/team-list';
+import { PlayerRetrieval } from '../services/player-retrieval.service';
+import { TeamRetrieval } from '../services/team-retrieval.service';
 
 
 @Component({
